@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option go_package = "./pkg";
 
-package hello-grpc;
-
 message HelloRequest {
   string input = 1;
 }
@@ -13,5 +11,5 @@ message HelloResponse {
 }
 
 service Hello {
-  rpc SayHello (HelloRequest) returns (HelloResponse) {}
+  rpc SayHello (HelloRequest) returns (HelloResponse);
 }

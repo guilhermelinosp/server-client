@@ -16,15 +16,15 @@ func main() {
   log.Fatalf("failed to connect to gRPC server at localhost:50051: %v", err)
  }
  defer conn.Close()
- c := pb.NewHelloWorldServiceClient(conn)
+ c := pb.NewHelloClient(conn)
 
  ctx, cancel := context.WithTimeout(context.Background(), time.Second)
  defer cancel()
 
- r, err := c.SayHello(ctx, &pb.HelloWorldRequest{})
+ r, err := c.SayHello(ctx, &pb.HelloRequest{})
  if err != nil {
   log.Fatalf("error calling function SayHello: %v", err)
  }
 
- log.Printf("Response from gRPC server's SayHello function: %s", r.GetMessage())
+ log.Printf("Response from gRPC server's SayHello function: %s", r.GetOutput())
 }

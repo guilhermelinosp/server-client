@@ -5,16 +5,16 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/guilhermelinosp/hello-grpc"
+	pb "github.com/guilhermelinosp/hello-grpc/pkg"
 	"google.golang.org/grpc"
 )
 
 type server struct {
- pb.UnimplementedHelloWorldServiceServer
+ pb.UnimplementedHelloServer
 }
 
-func (s *server) SayHello(ctx context.Context, in *pb.HelloWorldRequest) (*pb.HelloWorldResponse, error) {
- return &pb.HelloWorldResponse{Message: "Hello, World! "}, nil
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
+ return &pb.HelloResponse{}, nil
 }
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
  }
 
  s := grpc.NewServer()
- pb.RegisterHelloWorldServiceServer(s, &server{})
+ pb.RegisterHelloServer(s, &server{})
  log.Printf("gRPC server listening at %v", lis.Addr())
  if err := s.Serve(lis); err != nil {
   log.Fatalf("failed to serve: %v", err)
