@@ -1,6 +1,6 @@
 module github.com/guilhermelinosp/hello-grpc
 
-go 1.22
+go 1.27.0
 
 require (
 	golang.org/x/net v0.21.0 // indirect
